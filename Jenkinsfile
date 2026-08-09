@@ -1,23 +1,23 @@
 pipeline {
-     agent any
-      stages {
-           stage('Built') {
-               steps {
-                    echo 'Building the application'
-                    echo 'this is stage1'
-}
-}
-            stage('Test') {
-               steps {
-                    echo 'testing the application'
-                    echo 'All Test Passed'
-}
-}
-           stage('Deploy') {
-               steps {
-                    echo 'Deployment success'
-                    echo 'deloyed'
-}
-}
-}
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t jenkins-docker-app:latest .'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Docker image built successfully!'
+            }
+        }
+    }
 }
