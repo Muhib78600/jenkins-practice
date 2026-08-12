@@ -39,15 +39,26 @@ pipeline {
     post {
 
         success {
-            echo 'Pipeline completed successfully!'
+            mail (
+                to:muhammadmuhib0012@gmail.com
+                subject:success jenkin pipeline
+                body:pipeline completed success
+            
+                )
         }
+        
 
         failure {
-            echo 'Pipeline failed!'
+             mail (
+                to:muhammadmuhib0012@gmail.com
+                subject:failedjenkin pipeline
+                body:pipeline not completed success
+            
+                )
         }
 
         always {
-            echo 'Pipeline execution finished.'
+              echo 'pipeline execution finished'
         }
     }
 }
