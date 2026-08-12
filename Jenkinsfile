@@ -40,7 +40,7 @@ pipeline {
 
         success {
             mail (
-                to:muhammadmuhib0012@gmail.com
+                to:muhammadsial11@gmail.com
                 subject:success jenkin pipeline
                 body:pipeline completed success
             
@@ -50,7 +50,7 @@ pipeline {
 
         failure {
              mail (
-                to:muhammadmuhib0012@gmail.com
+                to:muhammadsial11@gmail.com
                 subject:failedjenkin pipeline
                 body:pipeline not completed success
             
