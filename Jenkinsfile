@@ -2,23 +2,25 @@ pipeline {
     agent any
 
     stages {
+
         stage('Build') {
             steps {
                 echo 'Building the application...'
             }
         }
-         stage('Test') {
-            steps { 
-                echo 'testing the built command'
+
+        stage('Test') {
+            steps {
+                echo 'Testing the built application...'
             }
-         }
+        }
+
         stage('Docker Build') {
             steps {
                 sh 'docker build -t jenkins-docker-app:latest .'
             }
         }
-       
-        }
+
         stage('Deploy') {
             steps {
                 sh 'docker rm -f jenkins-docker-app || true'
@@ -31,6 +33,21 @@ pipeline {
                 sh 'docker ps'
                 echo 'Application deployed successfully!'
             }
+        }
+    }
+
+    post {
+
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+
+        failure {
+            echo 'Pipeline failed!'
+        }
+
+        always {
+            echo 'Pipeline execution finished.'
         }
     }
 }
