@@ -39,26 +39,24 @@ pipeline {
     post {
 
         success {
-            mail (
-                to:muhammadsial11@gmail.com
-                subject:success jenkin pipeline
-                body:pipeline completed success
-            
-                )
+            mail(
+                to: 'muhammadsial11@gmail.com',
+                subject: 'Success - Jenkins Pipeline',
+                body: 'Pipeline completed successfully.'
+            )
         }
-        
 
         failure {
-             mail (
-                to:muhammadsial11@gmail.com
-                subject:failedjenkin pipeline
-                body:pipeline not completed success
-            
-                )
+            mail(
+                to: 'muhammadsial11@gmail.com',
+                subject: 'Failed - Jenkins Pipeline',
+                body: 'Pipeline did not complete successfully.'
+            )
         }
 
         always {
-              echo 'pipeline execution finished'
+            echo 'Pipeline execution finished.'
         }
     }
 }
+        
