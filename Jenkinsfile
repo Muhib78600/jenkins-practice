@@ -9,7 +9,12 @@ environment {
         stage('Build') {
             steps {
                 echo 'Building the application...'
-            }
+                
+stage('Credential Test') {
+    steps {
+        sh 'test -n "$MY_SECRET" && echo "Credential is available"'
+    }
+}            }
         }
 
         stage('Test') {
