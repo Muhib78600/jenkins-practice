@@ -40,7 +40,7 @@ stage('Credential Test') {
         stage('Deploy') {
             steps {
                 sh 'docker rm -f jenkins-docker-app || true'
-                sh 'docker run -d --name jenkins-docker-app -p 8081:80 jenkins-docker-app:latest'
+                sh "docker run -d --name jenkins-docker-app -p ${params.PORT}:80 jenkins-docker-app:latest"
             }
         }
 
