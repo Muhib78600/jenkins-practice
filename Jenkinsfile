@@ -1,5 +1,12 @@
 pipeline {
     agent any
+     parameters {
+    string(
+        name: 'PORT',
+        defaultValue: '8081',
+        description: 'Enter the host port for the application'
+    )
+}
     
 environment {
     MY_SECRET = credentials('my-test-secret')
