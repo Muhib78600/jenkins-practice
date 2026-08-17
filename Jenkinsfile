@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+    
+environment {
+    MY_SECRET = credentials('my-test-secret')
+}
     stages {
 
         stage('Build') {
