@@ -1,7 +1,10 @@
 
 pipeline {
     agent any
-
+            
+    triggers {
+    cron('H/2 * * * *')
+}
     parameters {
         string(
             name: 'PORT',
@@ -20,6 +23,12 @@ pipeline {
                 echo 'Building the application...'
             }
         }
+    stage('Run Script') {
+    steps {
+        sh 'chmod +x script.sh'
+        sh './script.sh'
+    }
+}
 
         stage('Credential Test') {
             steps {
