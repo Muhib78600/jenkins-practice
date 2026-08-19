@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
             
@@ -18,6 +17,17 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+    steps {
+        checkout([
+            $class: 'GitSCM',
+            branches: [[name: '*/main']],
+            userRemoteConfigs: [[
+                url: 'https://github.com/Muhib78600/jenkins-practice.git'
+            ]]
+        ])
+    }
+}
         stage('Build') {
             steps {
                 echo 'Building the application...'
