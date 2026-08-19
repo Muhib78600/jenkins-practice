@@ -1,31 +1,32 @@
+
 pipeline {
     agent any
-}
-     parameters {
-    string(
-        name: 'PORT',
-        defaultValue: '8081',
-        description: 'Enter the host port for the application'
-    )
-}
-    
-environment {
-    MY_SECRET = credentials('my-test-secret')
-}
-    stages {
 
+    parameters {
+        string(
+            name: 'PORT',
+            defaultValue: '8081',
+            description: 'Enter the host port for the application'
+        )
+    }
+
+    environment {
+        MY_SECRET = credentials('my-test-secret')
+    }
+
+    stages {
         stage('Build') {
             steps {
                 echo 'Building the application...'
             }
         }
-                
-stage('Credential Test') {
-    steps {
-        sh 'test -n "$MY_SECRET" && echo "Credential is available"'
-    }
-}            
-        
+
+        stage('Credential Test') {
+            steps {
+                sh 'test -n "$MY_SECRET" && echo "Credential is available"'
+            }
+        }
+
         stage('Test') {
             steps {
                 echo 'Testing the built application...'
@@ -38,11 +39,12 @@ stage('Credential Test') {
             }
         }
 
-      stage('Deploy') {
-    steps {
-        sh './deploy.sh'
-    }
-}
+        stage('Deploy') {
+            steps {
+                sh './deploy.sh'
+            }
+        }
+
         stage('Verify') {
             steps {
                 sh 'docker ps'
@@ -52,7 +54,6 @@ stage('Credential Test') {
     }
 
     post {
-
         success {
             mail(
                 to: 'muhammadsial11@gmail.com',
@@ -60,7 +61,6 @@ stage('Credential Test') {
                 body: 'Pipeline completed successfully.'
             )
         }
-
         failure {
             mail(
                 to: 'muhammadsial11@gmail.com',
@@ -68,10 +68,8 @@ stage('Credential Test') {
                 body: 'Pipeline did not complete successfully.'
             )
         }
-
         always {
             echo 'Pipeline execution finished.'
         }
     }
 }
-        
